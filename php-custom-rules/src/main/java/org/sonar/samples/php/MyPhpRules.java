@@ -31,8 +31,7 @@ import java.util.Map;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionAnnotationLoader;
 import org.sonar.plugins.php.api.visitors.PHPCustomRuleRepository;
-import org.sonar.samples.php.checks.ForbiddenFunctionUseCheck;
-import org.sonar.samples.php.checks.OtherForbiddenFunctionUseCheck;
+import org.sonar.samples.php.checks.PrefixAssignmentCheck;
 
 /**
  * Extension point to define a PHP rule repository.
@@ -53,7 +52,7 @@ public class MyPhpRules implements RulesDefinition, PHPCustomRuleRepository {
    */
   @Override
   public ImmutableList<Class> checkClasses() {
-    return ImmutableList.of(ForbiddenFunctionUseCheck.class, OtherForbiddenFunctionUseCheck.class);
+    return ImmutableList.of(PrefixAssignmentCheck.class);
   }
 
   @Override
@@ -69,8 +68,7 @@ public class MyPhpRules implements RulesDefinition, PHPCustomRuleRepository {
 
     // Optionally define remediation costs
     Map<String, String> remediationCosts = new HashMap<>();
-    remediationCosts.put(ForbiddenFunctionUseCheck.KEY, "5min");
-    remediationCosts.put(OtherForbiddenFunctionUseCheck.KEY, "5min");
+    remediationCosts.put(PrefixAssignmentCheck.KEY, "5min");
     repository.rules().forEach(rule -> rule.setDebtRemediationFunction(
       rule.debtRemediationFunctions().constantPerIssue(remediationCosts.get(rule.key()))));
 
