@@ -34,7 +34,8 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * Example of implementation of a check by extending {@link PHPVisitorCheck}.
- * PHPSubscriptionCheck provides method {@link PHPVisitorCheck#visitForStatement(ForStatementTree)} to visit "for" loops
+ * PHPVisitorCheck provides methods {@link PHPVisitorCheck#visitForStatement(ForStatementTree)} to visit loops
+ * and other statements
  *<p>
  * Those methods should be overridden to process information
  * related to node and issue can be created via the context that can be
@@ -43,10 +44,10 @@ import org.apache.commons.lang.StringUtils;
 @Rule(
   key = PrefixAssignmentCheck.KEY,
   priority = Priority.MAJOR,
-  name = "Forbidden pattern should not be used.",
-  tags = {"convention"},
+  name = "Avoid Post-incrementation or Post-decrementation",
+  tags = {"brain-overload"},
 // Description can either be given in this annotation or through HTML name <ruleKey>.html located in package src/resources/org/sonar/l10n/php/rules/<repositoryKey>
-  description = "<p>The following pattern should not be used:</p> <ul><li>$i++</li> <li>$i--</li></ul>"
+  description = "<p>Post-incrementation or Post-decrementation should not be used:</p> <ul><li>Replace $i++ with ++$i</li></ul>"
   )
 public class PrefixAssignmentCheck extends PHPVisitorCheck  {
 
