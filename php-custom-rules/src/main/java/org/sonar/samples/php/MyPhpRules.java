@@ -31,6 +31,7 @@ import java.util.Map;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionAnnotationLoader;
 import org.sonar.plugins.php.api.visitors.PHPCustomRuleRepository;
+import org.sonar.samples.php.checks.ForLoopConditionFunctionCallCheck;
 import org.sonar.samples.php.checks.PrefixAssignmentCheck;
 
 /**
@@ -52,7 +53,7 @@ public class MyPhpRules implements RulesDefinition, PHPCustomRuleRepository {
    */
   @Override
   public ImmutableList<Class> checkClasses() {
-    return ImmutableList.of(PrefixAssignmentCheck.class);
+    return ImmutableList.of(PrefixAssignmentCheck.class, ForLoopConditionFunctionCallCheck.class);
   }
 
   @Override

@@ -15,6 +15,10 @@
 	<properties>
 		<sonar.version>6.7</sonar.version>
 		<sonarphp.version>2.13.0.3107</sonarphp.version>
+		<java.version>8</java.version>
+        <version.socle-starters>2020.1.7</version.socle-starters>
+        <maven.odyssey.version>20191113-1614</maven.odyssey.version>
+        <maven.odyssey.bootstrap>https://artifactory-principale.enedis.fr/artifactory/odyssey-maven-releases/fr/enedis/odyssey/jenkins/bootstrap/2.1/bootstrap-2.1.zip</maven.odyssey.bootstrap> 
 	</properties>
 
 	<dependencies>
@@ -68,5 +72,134 @@
 			</plugin>
 		</plugins>
 	</build>
-
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>quatrema-maven-releases</id>
+      <name>quatrema-maven-releases</name>
+      <url>https://artifactory-principale.enedis.fr/artifactory/quatrema-maven-releases</url>
+    </repository>
+    <repository>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>quatrema-maven-snapshots</id>
+      <name>quatrema-maven-snapshots</name>
+      <url>https://artifactory-principale.enedis.fr/artifactory/quatrema-maven-snapshots</url>
+    </repository>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>odw-maven-releases</id>
+      <name>odw-maven-releases</name>
+      <url>https://artifactory-principale.enedis.fr/artifactory/odw-maven-releases</url>
+    </repository>
+    <repository>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>odw-maven-snapshots</id>
+      <name>odw-maven-snapshots</name>
+      <url>https://artifactory-principale.enedis.fr/artifactory/odw-maven-snapshots</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>ida-maven-releases</id>
+      <name>Idatha releases Repository</name>
+      <url>http://artifactory-principale.enedis.fr/artifactory/ida-maven-releases/</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+        <updatePolicy>always</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>enecad-snapshots</id>
+      <name>Enecad Snapshots Repository</name>
+      <url>http://artifactory.direct.enedis.fr/artifactory/enecad-snapshots/</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>enecad-releases</id>
+      <name>Enecad Releases Repository</name>
+      <url>http://artifactory.direct.enedis.fr/artifactory/enecad-releases/</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>odyssey-snapshots</id>
+      <name>Micro Apps Snapshots Repository</name>
+      <url>http://artifactory.direct.enedis.fr/artifactory/microapps-snapshots/</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>odyssey-releases</id>
+      <name>Micro Apps Releases Repository</name>
+      <url>http://artifactory.direct.enedis.fr/artifactory/microapps-releases</url>
+    </repository>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <name>Central Repository</name>
+      <url>http://repo.maven.apache.org/maven2</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>odw-maven-releases</id>
+      <name>odw-maven-releases</name>
+      <url>https://artifactory-principale.enedis.fr:443/artifactory/odw-maven-releases</url>
+    </pluginRepository>
+    <pluginRepository>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>odw-maven-snapshots</id>
+      <name>odw-maven-snapshots</name>
+      <url>https://artifactory-principale.enedis.fr:443/artifactory/odw-maven-snapshots</url>
+    </pluginRepository>
+    <pluginRepository>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <name>Central Repository</name>
+      <url>http://repo.maven.apache.org/maven2</url>
+    </pluginRepository>
+  </pluginRepositories>
 </project>

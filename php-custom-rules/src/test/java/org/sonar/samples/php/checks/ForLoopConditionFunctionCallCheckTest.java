@@ -28,16 +28,16 @@ import java.io.File;
 /**
  * Test class to test the check implementation.
  */
-public class PrefixAssignmentCheckTest {
+public class ForLoopConditionFunctionCallCheckTest {
 
   @Test
   public void testOK() {
-    PHPCheckTest.check(new PrefixAssignmentCheck(), new PhpTestFile(new File("src/test/resources/checks/prefixAssignmentCheck.php")));
+    PHPCheckTest.check(new ForLoopConditionFunctionCallCheck(), new PhpTestFile(new File("src/test/resources/checks/forLoopConditionFunctionCallCheck.php")));
   }
 
   @Test
   public void testNOK() {
-    PHPCheckTest.check(new PrefixAssignmentCheck(), new PhpTestFile(new File("src/test/resources/checks/prefixAssignmentCheckNOK.php")));
+    PHPCheckTest.check(new ForLoopConditionFunctionCallCheck(), new PhpTestFile(new File("src/test/resources/checks/forLoopConditionFunctionCallCheckNOK.php")));
   }
 
 }
