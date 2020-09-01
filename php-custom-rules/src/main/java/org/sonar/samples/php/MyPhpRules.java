@@ -58,7 +58,7 @@ public class MyPhpRules implements RulesDefinition, PHPCustomRuleRepository {
 
   @Override
   public void define(Context context) {
-    NewRepository repository = context.createRepository(repositoryKey(), "php").setName("MyCompany Custom Repository");
+    NewRepository repository = context.createRepository(repositoryKey(), "php").setName("EcoScan Repository");
 
     // Load rule meta data from annotations
     RulesDefinitionAnnotationLoader annotationLoader = new RulesDefinitionAnnotationLoader();
@@ -70,6 +70,7 @@ public class MyPhpRules implements RulesDefinition, PHPCustomRuleRepository {
     // Optionally define remediation costs
     Map<String, String> remediationCosts = new HashMap<>();
     remediationCosts.put(PrefixAssignmentCheck.KEY, "5min");
+    remediationCosts.put(ForLoopConditionFunctionCallCheck.KEY, "5min");
     repository.rules().forEach(rule -> rule.setDebtRemediationFunction(
       rule.debtRemediationFunctions().constantPerIssue(remediationCosts.get(rule.key()))));
 

@@ -51,13 +51,21 @@ import org.apache.commons.lang.StringUtils;
 )
 public class ForLoopConditionFunctionCallCheck extends PHPVisitorCheck  {
 
-
-    public static final String KEY = "S1";
-    private static final String MESSAGE = "<p>Function call inside a for loop condition should not be used</p>";
+    public static final String FUNCTION_PATTERN = "^.*\\(.*\\)$";
+    private Pattern pattern;
+    public static final String KEY = "ForLoopConditionFunctionCallCheck";
+    private static final String MESSAGE = "Function call inside a for loop condition should not be used";
 
 
     private Deque<Set<String>> counterStack = new ArrayDeque<>();
-
+    @RuleProperty(
+            key = "format",
+            defaultValue = FUNCTION_PATTERN)
+    String format = FUNCTION_PATTERN;
+    @Override
+    public void init() {
+        pattern = Pattern.compile(format);
+    }
     @Override
     public void visitCompilationUnit(CompilationUnitTree tree) {
         counterStack.clear();
@@ -87,21 +95,21 @@ public class ForLoopConditionFunctionCallCheck extends PHPVisitorCheck  {
     }
 
     private void checkFunctionCall(ForStatementTree forStatement) {
-        condition = forStatement.condition();
-        for(int i=0;i<condition.size();++i){
-            if(i.is(Kind.FUNCTIONCALL)){
+        for (ExpressionTree condition : forStatement.condition()) {
+            if(isNotCompliant(condition.toString())){
                 context().newIssue(this, forStatement, String.format(MESSAGE, forStatement.toString()
                 ));
             }
         }
     }
+    private boolean isNotCompliant(String varName) {
+        return pattern.matcher(StringUtils.remove(varName, "$")).matches();
+    }
 
     private static Set<String> getCounterNames(ForStatementTree forStatement) {
         Set<String> counterNames = new HashSet<>();
         for (ExpressionTree condition : forStatement.condition()) {
-            if (!condition.isEmpty()){
-                counterNames.add(((FunctionCallTree) initExpression).variable().toString());
-            }
+                counterNames.add(condition.toString());
         }
         return counterNames;
     }

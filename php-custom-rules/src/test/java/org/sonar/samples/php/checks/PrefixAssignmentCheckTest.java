@@ -21,6 +21,7 @@ package org.sonar.samples.php.checks;
 
 import org.junit.Test;
 import org.sonar.plugins.php.api.tests.PHPCheckTest;
+import org.sonar.plugins.php.api.tests.PHPCheckVerifier;
 import org.sonar.plugins.php.api.tests.PhpTestFile;
 
 import java.io.File;
@@ -31,13 +32,8 @@ import java.io.File;
 public class PrefixAssignmentCheckTest {
 
   @Test
-  public void testOK() {
-    PHPCheckTest.check(new PrefixAssignmentCheck(), new PhpTestFile(new File("src/test/resources/checks/prefixAssignmentCheck.php")));
-  }
-
-  @Test
-  public void testNOK() {
-    PHPCheckTest.check(new PrefixAssignmentCheck(), new PhpTestFile(new File("src/test/resources/checks/prefixAssignmentCheckNOK.php")));
+  public void test(){
+    PHPCheckVerifier.verify(new PhpTestFile(new File("src/test/resources/checks/prefixAssignmentCheck.php")),new PrefixAssignmentCheck());
   }
 
 }

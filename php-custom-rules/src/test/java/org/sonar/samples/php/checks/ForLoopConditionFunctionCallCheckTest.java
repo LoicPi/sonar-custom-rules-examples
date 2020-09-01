@@ -21,6 +21,7 @@ package org.sonar.samples.php.checks;
 
 import org.junit.Test;
 import org.sonar.plugins.php.api.tests.PHPCheckTest;
+import org.sonar.plugins.php.api.tests.PHPCheckVerifier;
 import org.sonar.plugins.php.api.tests.PhpTestFile;
 
 import java.io.File;
@@ -31,13 +32,8 @@ import java.io.File;
 public class ForLoopConditionFunctionCallCheckTest {
 
   @Test
-  public void testOK() {
-    PHPCheckTest.check(new ForLoopConditionFunctionCallCheck(), new PhpTestFile(new File("src/test/resources/checks/forLoopConditionFunctionCallCheck.php")));
-  }
-
-  @Test
-  public void testNOK() {
-    PHPCheckTest.check(new ForLoopConditionFunctionCallCheck(), new PhpTestFile(new File("src/test/resources/checks/forLoopConditionFunctionCallCheckNOK.php")));
+  public void test(){
+    PHPCheckVerifier.verify(new PhpTestFile(new File("src/test/resources/checks/forLoopConditionFunctionCallCheck.php")),new ForLoopConditionFunctionCallCheck());
   }
 
 }

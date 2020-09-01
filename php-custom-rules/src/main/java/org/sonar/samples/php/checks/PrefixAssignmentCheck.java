@@ -52,7 +52,7 @@ import org.apache.commons.lang.StringUtils;
 public class PrefixAssignmentCheck extends PHPVisitorCheck  {
 
   public static final String PREFIX_PATTERN = "^.*\\+{2}|\\-{2}$";
-  public static final String KEY = "S3";
+  public static final String KEY = "PostIncrementDecrementCheck";
   private static final String MESSAGE = "Refactor the code to avoid creating provisional variable: ++$i / $i++";
   private Pattern pattern;
 
