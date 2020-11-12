@@ -1,9 +1,10 @@
 class ForLoopConditionFunctionCallCheckFailClass {
     public void function() {
-        String[] array = {"a", "b", "c"};
+        ArrayList<String> array = {"a", "b", "c"};
 
-        for (int i = 0; i < array.length; ++i) {
-            // Noncompliant@+1 {{Function call inside a for loop condition should not be used}}
+        // Noncompliant@+1 {{Function call inside a for loop condition should not be used.}}
+        for (int i = 0; i < array.size(); ++i) {
+
         }
 
     }

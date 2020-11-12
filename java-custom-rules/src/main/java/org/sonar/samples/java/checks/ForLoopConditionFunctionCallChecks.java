@@ -1,15 +1,12 @@
 package org.sonar.samples.java.checks;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Pattern;
 
+import com.google.common.collect.ImmutableList;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
 import org.sonar.plugins.java.api.tree.*;
-
-import com.google.common.collect.ImmutableList;
 
 @Rule(
         key = ForLoopConditionFunctionCallChecks.KEY,
@@ -27,19 +24,19 @@ public class ForLoopConditionFunctionCallChecks extends IssuableSubscriptionVisi
 
     @Override
     public List<Tree.Kind> nodesToVisit() {
-        return Arrays.asList(
-                Tree.Kind.FOR_STATEMENT
+        return ImmutableList.of(
+                Tree.Kind.METHOD_INVOCATION
         );
     }
 
     @Override
     public void visitNode(Tree tree) {
-            ForStatementTree forStatementTree = (ForStatementTree) tree;
-            ExpressionTree s = (ExpressionTree) forStatementTree.condition();
-            System.out.println(s);
-            /*if( s.equals(")")) {
-                reportIssue(tree, MESSAGE);
-            }*/
+
+        MethodInvocationTree methodInvocationTree = (MethodInvocationTree) tree;
+        if(methodInvocationTree.parent().parent().is(Tree.Kind.FOR_STATEMENT)) {
+            reportIssue(methodInvocationTree, MESSAGE + ".");
+        }
+
         super.visitNode(tree);
     }
 
