@@ -38,16 +38,14 @@ import java.util.*;
  */
 public class PrefixAssignmentChecks  extends IssuableSubscriptionVisitor {
 
-  public static final String KEY = "S1";
+  public static final String KEY = "PostIncrementDecrementCheck";
   private static final String MESSAGE = "Refactor the code to avoid creating provisional variable: use ";
 
-  @Override
   public List<Tree.Kind> nodesToVisit() {
     return Arrays.asList(
             Tree.Kind.POSTFIX_INCREMENT,
             Tree.Kind.POSTFIX_DECREMENT);
   }
-  @Override
   public void visitNode(Tree tree) {
    if(tree.is(Tree.Kind.POSTFIX_INCREMENT) || tree.is(Tree.Kind.POSTFIX_DECREMENT)){
      UnaryExpressionTree unaryExpressionTree = (UnaryExpressionTree) tree;

@@ -1,0 +1,8 @@
+<p>Function call in For loop condition</p>
+<p>Function call inside a for loop condition should not be used:</p>
+<ul><li>Example: </li>
+    <li>Replace </li>
+    <li>for($i = 0; $i < count($array); $i++)</li>
+    <li>with $count = count($array); </li>
+    <li>for($i = 0; $i < $count; $i++) </li>
+</ul>
